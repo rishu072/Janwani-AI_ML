@@ -25,14 +25,14 @@ RUN addgroup --system appgroup \
 # ---- working directory ----------------------------------------------
 WORKDIR /app
 
-# ---- Python dependencies (install before copying code so layer is cached) ----
-COPY requirements.txt .
+# ---- Python dependencies --------------------------------------------
+# Paths are relative to repo root (Render's default Docker context)
+COPY deployment/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ---- application code + models ------------------------------------
-# Copy everything from the build context — .dockerignore excludes
-# .venv, __pycache__, test outputs, secrets, etc.
-COPY . .
+COPY deployment/app/    ./app/
+COPY deployment/models/ ./models/
 
 # ---- set ownership --------------------------------------------------
 RUN chown -R appuser:appgroup /app
