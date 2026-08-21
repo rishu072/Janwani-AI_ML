@@ -1,0 +1,45 @@
+# ---- Python cache ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+
+# ---- Test / coverage output ----
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ---- Build artifacts ----
+*.egg-info/
+dist/
+build/
+
+# ---- Secrets / local config ----
+.env
+.env.*
+*.secret
+
+# ---- IDE ----
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ---- YOLO training outputs ----
+runs/
+datasets/
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- Model weights (large binaries — use Git LFS or keep out of repo) ----
+# Uncomment to exclude model from git (store separately or use Git LFS):
+# deployment/models/*.pt

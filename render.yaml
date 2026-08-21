@@ -1,0 +1,42 @@
+# render.yaml
+# Render (https://render.com) Blueprint — deploy Janwani AI Service as a Docker web service.
+# Commit this file to your repository root and Render will pick it up automatically.
+
+services:
+  - type: web
+    name: janwani-ai-service
+    runtime: docker
+    dockerfilePath: deployment/Dockerfile  # Path relative to repo root
+    dockerContext: deployment              # Build context = deployment/ directory
+
+    # Render free tier: 512 MB RAM, shared CPU
+    # Upgrade to Starter ($7/mo) for 512 MB dedicated RAM — recommended for YOLO inference
+    plan: free
+
+    # Health check — Render will restart the container if this fails
+    healthCheckPath: /health
+
+    # Environment variables — set actual values in the Render dashboard
+    envVars:
+      - key: PORT
+        value: "8000"           # Render overrides this automatically; kept for clarity
+
+      - key: MODEL_PATH
+        value: models/civic.pt  # Relative to WORKDIR /app inside container
+
+      - key: CONFIDENCE_THRESHOLD
+        value: "0.15"           # Raise to 0.35 for fewer false positives
+
+      - key: IOU_THRESHOLD
+        value: "0.45"
+
+      - key: MAX_IMAGE_SIZE_MB
+        value: "10"
+
+      - key: LOG_LEVEL
+        value: "INFO"
+
+      # IMPORTANT: Set this to your actual frontend URL for security
+      # e.g. https://janwani.vercel.app,https://www.janwani.in
+      - key: ALLOWED_ORIGINS
+        value: "*"              # Change before going live!

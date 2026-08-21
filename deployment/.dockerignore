@@ -1,0 +1,49 @@
+# ---- Python cache ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+
+# ---- Virtual environments ----
+.venv/
+venv/
+env/
+.env
+
+# ---- Test / coverage ----
+.pytest_cache/
+.coverage
+htmlcov/
+tests/
+
+# ---- Build artifacts ----
+*.egg-info/
+dist/
+build/
+
+# ---- Dev / IDE ----
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# ---- Secrets / env files ----
+.env
+.env.*
+*.secret
+
+# ---- YOLO training outputs (not needed in container) ----
+runs/
+datasets/
+*.yaml
+
+# ---- Logs ----
+logs/
+*.log
+
+# ---- Git ----
+.git/
+.gitignore
