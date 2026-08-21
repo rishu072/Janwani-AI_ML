@@ -30,8 +30,9 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # ---- application code + models ------------------------------------
-COPY app/      ./app/
-COPY models/   ./models/
+# Copy everything from the build context — .dockerignore excludes
+# .venv, __pycache__, test outputs, secrets, etc.
+COPY . .
 
 # ---- set ownership --------------------------------------------------
 RUN chown -R appuser:appgroup /app
